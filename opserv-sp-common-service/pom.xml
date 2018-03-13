@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.cognizant.opserv.sp</groupId>
+    <artifactId>opserv-sp-main</artifactId>
+    <version>3.0</version>
+     <relativePath>../opserv-sp-main</relativePath>
+  </parent>
+  <artifactId>opserv-sp-common-service</artifactId>
+<build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.cognizant.opserv.sp</groupId>
+  		<artifactId>opserv-sp-core</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.cognizant.opserv.sp</groupId>
+  		<artifactId>opserv-sp-common</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+	<dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-messaging</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  
+      <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-test</artifactId>
+      	</dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+    </dependency>
+      
+      <dependency>
+       	<groupId>com.cognizant.peg.notification</groupId>
+  		<artifactId>peg-nc-client</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.cognizant.peg.notification</groupId>
+       	<artifactId>peg-nc-core</artifactId>
+       	<version>3.0</version>
+	</dependency>
+  </dependencies>  
+</project>

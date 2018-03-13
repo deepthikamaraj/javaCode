@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
+
+	<bean id="metricErrorHandler" class="com.cognizant.opserv.sp.batch.util.ListenerErrorHandler" />
+
+	<!-- START OF METRIC LISTENER (STATIC) -->
+	<bean id="metricsListener"
+		class="com.cognizant.opserv.sp.metric.listener.MetricsListener" />
+	<bean id="metricsContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="errorHandler" ref="metricErrorHandler" />
+		<property name="connectionFactory" ref="opservConnectionFactory" />
+		<property name="destinationName" value="staticMetricsQueue" />
+		<property name="messageListener" ref="metricsListener" />
+		<property name="autoStartup" value="true" />
+	    <property name="concurrentConsumers" value="${metricListener.min.conc.consumers}" />
+		<property name="maxConcurrentConsumers" value="${metricListener.max.conc.consumers}" />
+	</bean>
+	<!-- END OF METRIC LISTENER (STATIC) -->
+	
+	<!--STATIC METRIC BASE VALUE QUEUE LISTENER -->
+	<bean id="metricsStaicBaseValueListener"
+		class="com.cognizant.opserv.sp.metric.listener.MetricStaticBaseValueListener" />
+	<bean id="metricsStaicBaseValueContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="errorHandler" ref="metricErrorHandler" />
+		<property name="connectionFactory" ref="opservConnectionFactory" />
+		<property name="destinationName" value="metricStaticBaseValueQueue" />
+		<property name="messageListener" ref="metricsStaicBaseValueListener" />
+		<property name="autoStartup" value="true" />
+		<property name="concurrentConsumers" value="${metricStaticBaseValueListener.min.conc.consumers}" />
+		<property name="maxConcurrentConsumers" value="${metricStaticBaseValueListener.max.conc.consumers}" />
+	</bean>
+	<!-- END OF STATIC METRIC BASE VALUE QUEUE LISTENER  -->
+</beans>

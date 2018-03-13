@@ -1,0 +1,3 @@
+Rem Environment : Local | Changeset : Latest | Build on : 15-Oct-2015 17:53:18 IST
+Rem set classpath=%classpath%;%OPSERV_HOME%/config/quartz.properties
+java -Xms256m -Xmx756m -XX:MaxPermSize=756m -cp .;%OPSERV_HOME%/config;opserv-sp-batch-metrics-3.0.jar -Dlog4j.configurationFile=file:///%OPSERV_HOME%/config/metrics-log-config.xml -DappType=standalone -DappName=SpMetric -DtargetDataSource=app -Dopserv.config.file=%OPSERV_HOME%/config/opserv-config.properties -Diattain.pdf.folder=%OPSERV_HOME%/store/pdfs com.cognizant.opserv.sp.metric.util.MetricBatch

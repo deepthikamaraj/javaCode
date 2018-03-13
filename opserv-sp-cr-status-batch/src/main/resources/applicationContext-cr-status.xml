@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    	http://www.springframework.org/schema/context 
+    	http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<context:property-placeholder location="file:///${opserv.config.file}" ignore-unresolvable="true" />
+	<context:annotation-config/>
+	
+
+	<context:component-scan base-package="com.cognizant.*"/>
+	<import resource="classpath*:applicationContext-tenantBatch.xml" />
+	<import resource="classpath*:applicationContext-batch-persistence.xml"/>
+	<import resource="classpath*:applicationContext-batch-jdbc-persistence.xml"/>
+	<import resource="classpath*:applicationContext-opserv-messaging.xml" />
+
+	<bean id="triggerCRStatusBatch" class="com.cognizant.opserv.sp.cr.status.TriggerCRStatusBatch"/>
+	
+	<!-- Creates a EntityManagerFactory for use with the Hibernate JPA provider-->
+	<bean id="stringEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor"
+	lazy-init="false">
+	  <property name="algorithm" value="PBEWithMD5AndDES" />
+	  <property name="password" value="password" />
+	</bean>
+	
+	<bean id="hibernateStringEncryptor"
+	class="org.jasypt.hibernate4.encryptor.HibernatePBEStringEncryptor">
+	  <property name="registeredName" value="hibernateStringEncryptor" />
+	  <property name="encryptor" ref="stringEncryptor" />
+	</bean>
+
+</beans>

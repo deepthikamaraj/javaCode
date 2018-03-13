@@ -1,0 +1,174 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>opserv-sp-cr-status-batch</artifactId>
+  <name>opserv-sp-cr-status-batch</name>
+  <description>opserv-sp-cr-status-batch</description>
+  
+  <parent>
+    <groupId>com.cognizant.opserv.sp</groupId>
+    <artifactId>opserv-sp-main</artifactId>
+    <version>3.0</version>
+  </parent>
+  
+ 
+  <properties>
+    <cr.status.final.name>opserv-sp-cr-status</cr.status.final.name>
+    <cr.status.assembly.id>bin</cr.status.assembly.id>
+  </properties>
+  
+  <dependencies>
+  
+   <dependency>
+      <groupId>com.cognizant.opserv.sp</groupId>
+      <artifactId>opserv-sp-core</artifactId>
+      <version>3.0</version>
+    </dependency>
+    
+    <dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-messaging</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+    
+    <dependency>
+      <groupId>com.cognizant.opserv</groupId>
+      <artifactId>opserv-tenant-common</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cognizant.opserv</groupId>
+      <artifactId>opserv-tenant-config</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cognizant.opserv</groupId>
+      <artifactId>opserv-tenant-service</artifactId>
+    </dependency>
+    
+    <dependency>
+		<groupId>com.cognizant.opserv.sp</groupId>
+		<artifactId>opserv-sp-batch-core</artifactId>
+		<version>3.0</version>
+	</dependency>
+
+
+    <!-- For Connection pooling -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>mchange-commons-java</artifactId>
+      <version>0.2.9</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+  <build>
+		<finalName>${cr.status.final.name}</finalName>
+		<plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <configuration>
+	          <skipTests>true</skipTests>
+	        </configuration>
+	      </plugin>
+		  
+		  <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.cognizant.opserv.sp.cr.status.TriggerCRStatusBatch</mainClass>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+						<manifestEntries>
+							<Class-Path>resources/</Class-Path>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib/</outputDirectory>
+						</configuration>
+					</execution>
+					<!-- Copy batch to deployable folder externally -->
+					<execution>
+						<id>copy-batch</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+						   <stripVersion>true</stripVersion>
+			              <artifactItems>
+			                <artifactItem>
+			                  <groupId>${project.groupId}</groupId>
+			                  <artifactId>${project.artifactId}</artifactId>
+			                  <version>${project.version}</version>
+			                  <classifier>${cr.status.assembly.id}</classifier>
+			                  <type>zip</type>
+			                  <overWrite>true</overWrite>
+			                  <outputDirectory>${deployables.dir}</outputDirectory>
+			                  <destFileName>${cr.status.final.name}-${cr.status.assembly.id}.zip</destFileName>
+			                </artifactItem>
+			              </artifactItems>	
+						</configuration>
+					</execution>
+					
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<finalName>${cr.status.final.name}</finalName>
+					<descriptor>src/main/assembly/build.xml</descriptor>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+		</plugins>
+	</build>
+  
+  <groupId>com.cognizant.opserv</groupId>
+  <url>http://maven.apache.org</url>
+</project>

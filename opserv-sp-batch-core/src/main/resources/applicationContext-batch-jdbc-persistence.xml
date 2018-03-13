@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+				   			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+							 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd ">
+
+<!--  Below beans are used for when no multitenancy is required -->
+	<bean id="defaultDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${opserv.sp.db.driverClassName}" />
+		<property name="jdbcUrl" value="${opserv.sp.db.url}"  />
+		<property name="user" value="${opserv.sp.db.user}" />
+		<property name="password" value="${opserv.sp.db.password}" />
+		<property name="initialPoolSize" value="${${appName}-db.initialPoolSize}" />
+	    <property name="maxPoolSize" value="${${appName}-db.maxPoolSize}" />
+	    <property name="minPoolSize" value="${${appName}-db.minPoolSize}" />
+	</bean>	
+
+	<bean id="defaultJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+		<property name="dataSource" ref="defaultDataSource"/>  
+	</bean>
+
+	<bean id="defaultNamedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">  
+		<constructor-arg name="dataSource" ref="defaultDataSource"/>  
+	</bean>
+	<!--  Below beans are used for multitenancy support -->
+	<bean id="tenantConfigDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${opserv.conf.db.driverClassName}" />
+		<property name="jdbcUrl" value="${opserv.conf.db.url}"  />
+		<property name="user" value="${opserv.conf.db.username}" />
+		<property name="password" value="${opserv.conf.db.password}" />
+		<property name="initialPoolSize" value="${opserv.conf.db.initialPoolSize}" />
+    <property name="maxPoolSize" value="${opserv.conf.db.maxPoolSize}" />
+    <property name="minPoolSize" value="${opserv.conf.db.minPoolSize}" />
+	</bean>
+	
+	<bean id="tenantConfigJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+		<property name="dataSource" ref="tenantConfigDataSource"/>  
+	</bean>	
+	<bean id="tenantNamedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">  
+		<constructor-arg name="dataSource" ref="tenantConfigDataSource"/>  
+	</bean>
+	
+</beans>

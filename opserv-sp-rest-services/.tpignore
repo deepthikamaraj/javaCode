@@ -1,0 +1,5 @@
+\Q/.project\E
+\Q/.classpath\E
+\Q/target/\E.*
+\Q/icomp-portal-remote-debug.launch\E
+\Q/.settings/\E.*

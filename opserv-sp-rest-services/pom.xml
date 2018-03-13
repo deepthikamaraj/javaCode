@@ -1,0 +1,198 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>opserv-sp-rest-services</artifactId>
+  <packaging>war</packaging>
+  <name>opserv-sp-rest-services</name>
+  <url>http://maven.apache.org</url>
+  
+  
+  <dependencies>
+	    <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-core</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-web</artifactId>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>jstl</groupId>
+	      <artifactId>jstl</artifactId>
+	      <version>1.2</version>
+	    </dependency>
+
+	    <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-webmvc</artifactId>
+	    </dependency>
+
+ <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-taglibs</artifactId>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-cas</artifactId>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-acl</artifactId>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <scope>compile</scope>
+      </dependency>
+      
+      <dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-tenant-common</artifactId>
+  	</dependency>
+  	<dependency>
+			<groupId>com.cognizant.opserv</groupId>
+			<artifactId>opserv-tenant-service</artifactId>
+	</dependency>  	 
+	 <dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-tenant-config</artifactId>
+  	</dependency> 	
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>jstl</artifactId>
+	      <scope>provided</scope>
+    	</dependency>
+	
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>servlet-api</artifactId>
+	      <version>2.5</version>
+	      <scope>provided</scope>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>jsp-api</artifactId>
+	      <scope>provided</scope>
+    	</dependency>
+    	
+	    <dependency>
+	    	<groupId>com.cognizant.peg.web</groupId>
+	    	<artifactId>peg-web</artifactId>
+	    </dependency>
+	    <dependency>
+	    	<groupId>com.cognizant.opserv.sp</groupId>
+	    	<artifactId>opserv-sp-service-impl</artifactId>
+	    	<version>3.0</version>
+	    </dependency>
+	       <!-- ehcache start -->
+	 <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-ehcache</artifactId>
+         <exclusions>
+  			<exclusion>
+		      <groupId>org.slf4j</groupId>
+		      <artifactId>slf4j-api</artifactId>
+		    </exclusion>
+    	 </exclusions>
+      </dependency>
+      <!-- ehcahe end -->	  
+      <dependency>
+      	  <groupId>com.cognizant.opserv</groupId>
+      	  <artifactId>opserv-sp-cr-process-batch</artifactId>
+      	  <version>3.0</version>
+      </dependency>
+     
+  	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${war.plugin.version}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+					</archive>
+			</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-war</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+			              <artifactItems>
+			                <artifactItem>
+			                  <groupId>${project.groupId}</groupId>
+			                  <artifactId>${project.artifactId}</artifactId>
+			                  <version>${project.version}</version>
+			                  <type>${project.packaging}</type>
+			                  <overWrite>true</overWrite>
+			                  <outputDirectory>${deployables.dir}</outputDirectory>
+			                  <destFileName>${project.build.finalName}.${project.packaging}</destFileName>
+			                </artifactItem>
+			              </artifactItems>	
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		
+		  <!--  To copy assets 	-->
+	      <plugin>
+	        <artifactId>maven-resources-plugin</artifactId>
+	        <version>2.5</version>
+	        <executions>
+	          <execution>
+	            <id>copy-assets</id>
+	            <phase>install</phase>
+	            <goals>
+	              <goal>copy-resources</goal>
+	            </goals>
+	            <configuration>
+	              <outputDirectory>${deployables.dir}/assets/${project.build.finalName}/assets</outputDirectory>
+	              <resources>          
+	                <resource>
+	                  <directory>${project.build.directory}/${project.build.finalName}/assets</directory>
+	                  <filtering>false</filtering>
+	                </resource>
+	              </resources>              
+	            </configuration>            
+	          </execution>
+	        </executions>
+	      </plugin>			
+			
+		</plugins>
+		<finalName>sprs</finalName>
+	</build>
+	<parent>
+		<relativePath>../opserv-sp-main/pom.xml</relativePath>
+		<groupId>com.cognizant.opserv.sp</groupId>
+		<artifactId>opserv-sp-main</artifactId>
+		<version>3.0</version>
+	</parent>
+</project>

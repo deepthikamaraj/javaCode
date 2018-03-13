@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/tx 
+							http://www.springframework.org/schema/tx/spring-tx.xsd
+							http://www.springframework.org/schema/context 
+							http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	
+	<context:component-scan base-package="com.cognizant.*" />
+	<context:annotation-config />
+	
+	<import resource="classpath*:applicationContext-opserv-messaging.xml" />
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:invalidInput_en</value>
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://10.155.143.126:3306/amgen_ui_team_sp_trim</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>Password-1</value>
+		</property>
+	</bean>
+	
+	
+	<context:property-placeholder location="file:///${opserv.config.file}" ignore-unresolvable="true" />
+	
+  	<tx:annotation-driven proxy-target-class="true"	transaction-manager="transactionManager" />
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emfForAPPDB" />
+	</bean>
+	
+
+	<bean id="genericDAO" class="com.cognizant.opserv.sp.core.dao.APPGenericDAOImpl">
+		<property name="entityManagerFactory" ref="emfForAPPDB" />
+	</bean>
+	
+	<!--EntityManagerFactory Configuration for APPDB starts -->
+	<bean id="emfForAPPDB"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="APPPU" />
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence-test.xml" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+				<property name="showSql" value="true" />
+				<property name="generateDdl" value="false" />
+			</bean>
+		</property>
+   		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.connection.charSet">utf8</prop>
+				<prop key="hibernate.connection.characterEncoding">utf8</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	
+	<bean id="stringEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor" lazy-init="false">
+		<property name="algorithm" value="PBEWithMD5AndDES" />
+        <property name="password" value="password" />
+	</bean>
+
+	<bean id="hibernateStringEncryptor" class="org.jasypt.hibernate4.encryptor.HibernatePBEStringEncryptor">
+        <property name="registeredName" value="hibernateStringEncryptor" />
+        <property name="encryptor" ref="stringEncryptor" />
+    </bean>
+		
+	
+</beans>	

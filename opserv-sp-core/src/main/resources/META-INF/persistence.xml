@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+  <persistence-unit name="APPPU"
+		transaction-type="JTA">
+    <!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+    <!-- <jta-data-source>java:/JPaaSDS</jta-data-source> -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TValueRange</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRangeConfig</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TAlgmntRolePriv</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsrBussUnit</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TAccStatusType</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TAckStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAckStatusId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntSalesHier</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntSalesTeam</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntSalesRole</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntSalesTeamId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntStatusId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntTmpl</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntTmplId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrDef</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrDataType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrDataTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrGroup</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrGroupMap</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrRule</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TBussSubUnit</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TBussUnit</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObj</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussEntity</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRefBussEntity</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TBussUnitHier</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TBussEntity</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObjTmpl</class>
+    <class>com.cognizant.opserv.sp.core.entity.TValMsg</class>
+    <class>com.cognizant.opserv.sp.core.entity.TValMsgId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TValType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TComm</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommDoc</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommDocId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommNoteType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommNoteTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommPublisher</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommPublisherId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommReceipient</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommReceipientId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommTargetRecipient</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommTargetRecipientId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCommType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TExecutionStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TEmpAttr</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TGroup</class> <class>com.cognizant.opserv.sp.core.entity.TGroupTUsr</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TGroupTUsrId</class> <class>com.cognizant.opserv.sp.core.entity.TGroupType</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TNoteStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TNoteStatusId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TNoteType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TOrgSalesHier</class>
+    <class>com.cognizant.opserv.sp.core.entity.TOrg</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TOrgHierClass</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TOrgRole</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TOrgRoleTPers</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TOrgRoleTPersId</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TPers</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPersContact</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPersContactId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrefAttrValue</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TPrivilege</class> <class>com.cognizant.opserv.sp.core.entity.TPrivilegeType</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TPubType</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TPwdPolicy</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TRecipientAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRecipientAttrId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRejectReason</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TRole</class> <class>com.cognizant.opserv.sp.core.entity.TRoleList</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TRoleTGroup</class> <class>com.cognizant.opserv.sp.core.entity.TRoleTGroupId</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TRoleTPrivilege</class> <class>com.cognizant.opserv.sp.core.entity.TRoleTPrivilegeId</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TRoleType</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TRpt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptCategory</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptCategoryId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptConfigStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptConfigStatusId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptConfigTNoteType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptConfigTNoteTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptDataSource</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptDataSourceId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptDoc</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptDocId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptFreq</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptFreqId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptPublisher</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptPublisherId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptRecipient</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptRecipientId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptSched</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptSchedExecution</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptSchedLog</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptSchedId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptStatusType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptStatusTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptTargetRecipient</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptTargetRecipientId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptTUsrRptPref</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptTUsrRptPrefId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesTeam</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesHierList</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPos</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesTeamMirror</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesHierList</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTargetRecipientPref</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsr</class> <class>com.cognizant.opserv.sp.core.entity.TUsrAcc</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TUsrAuthType</class> <class>com.cognizant.opserv.sp.core.entity.TUsrPwd</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TUsrRptPref</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsrRptPrefId</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsrStatus</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TWkflwStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRptConfigTPers</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRoleList</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierLevel</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierConfigId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdBussUnit</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdBussUnitId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierGroup</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHier</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdHierId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrd</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmntId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTerrZipAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTerrZipAlgmntId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAppConfig</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TFeature</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TMtrFeature</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqFeature</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrPrefFeature</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TPrivilege</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsrRole</class> <class>com.cognizant.opserv.sp.core.entity.TUsrRoleId</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TRoleTPrivilege</class> <class>com.cognizant.opserv.sp.core.entity.TRoleTPrivilegeId</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TSysOrgRoleMap</class> <class>com.cognizant.opserv.sp.core.entity.TSysOrgRoleMapId</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TUsrMtrPref</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsrAttrPref</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsrPref</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsrPrefId</class>
+
+    <!-- ETL entity -->
+    <class>com.cognizant.opserv.sp.core.entity.TTerrZipLoad</class>
+    <class>com.cognizant.opserv.sp.core.entity.TLoadStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TDsStg</class>
+    <class>com.cognizant.opserv.sp.core.entity.TDsStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TDsMirror</class>
+    <class>com.cognizant.opserv.sp.core.entity.TLoadLog</class>
+    <class>com.cognizant.opserv.sp.core.entity.TExtLog</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTblSchMap</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTblSchMap</class>
+    <class>com.cognizant.opserv.sp.core.entity.TLoadLogHist</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdTblSch</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRefCd</class>
+
+    <!-- GIS entity -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsaCounty</class> <class>com.cognizant.opserv.sp.core.entity.TUsaState</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TUsaZip</class> -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TCountry</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCountryDiv</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCountryDivId</class>
+
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TIndiaPin</class> <class>com.cognizant.opserv.sp.core.entity.TIndiaTaluk</class> 
+			<class>com.cognizant.opserv.sp.core.entity.TIndiaDistrict</class> <class>com.cognizant.opserv.sp.core.entity.TIndiaState</class> -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosGeo</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosGeoId</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntBussRule</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussRuleConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussRuleConfigId</class>
+
+    <!-- Customer entity -->
+    <class>com.cognizant.opserv.sp.core.entity.TCust</class>
+    <class>com.cognizant.opserv.sp.core.entity.TContactType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAddrType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAddr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAddrId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAff</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAffType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAffHier</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAlgmntAff</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustCategory</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustPrdSales</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TCustContact</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustContactId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrtType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrtTypeId</class>
+    <!-- Employee entity -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TAddrType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAllocType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TEmpAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TEmpType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPersAddr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPersContact</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPersStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQualType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TClosureReason</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAllocType</class>
+
+
+
+
+
+    <!-- COVERAGE RULES ENTITY START -->
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleOrder</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleOpt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleOptId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleExec</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleSched</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRule</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussFunction</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRuleType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObj</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObjAssoc</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObjAssocId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TExecutionStatus</class>
+    <!-- COVERAGE RULES ENTITY END -->
+    <class>com.cognizant.opserv.sp.core.entity.TBussFunction</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRule</class>
+
+
+
+
+
+
+    <class>com.cognizant.opserv.sp.core.entity.TAttrDef</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAttrGroupMap</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAttr</class>
+
+
+    <!-- Call Planning entity -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TBussFunction</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObjAssoc</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussObjAssocId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallDir</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallDirConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallDirPrd</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallDirPrdId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallDirPrdWt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallDirPrdWtId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallPlanConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallPlanPrd</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCallPlanType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustCallPlan</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustPrdAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustPrdAlgmntId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdPrtType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrd</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmntHist</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRule</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRuleType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleOpt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleOrder</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleSched</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleExec</class>
+
+    <!-- Metrics entity -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TMtr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrAttrId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrCategory</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrCategoryId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrExpr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrValMsg</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrValMsgId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrTrigger</class>
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TFeature</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TFeatureType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrConfigId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrExecConfig</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TMtrExec</class>
+    <class>com.cognizant.opserv.sp.core.entity.TGeoMtrValue</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosMtrValue</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrExecLog</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMsgType</class>
+    <!-- <class>com.cognizant.opserv.sp.core.vo.DataSetDescription</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntPubStatus</class>
+    <!-- End of Coverage Rules Entitys -->
+
+
+    <!-- User Management Entitys -->
+
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TAlgmntRolePriv</class> -->
+
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TSysOrgRoleMap</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TAlgmntRolePriv</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TSysOrgRoleMapId</class> -->
+
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsrBussUnit</class> <class>com.cognizant.opserv.sp.core.entity.TUsrBussUnitId</class> -->
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TUsrPrivilege</class> <class>com.cognizant.opserv.sp.core.entity.TUsrPrivilegeId</class> -->
+
+
+
+    <!-- End of User Management Entitys -->
+
+    <!-- Start Field Facing DashBoard : UserPreferacne Entity -->
+    <class>com.cognizant.opserv.sp.core.entity.TWdg</class>
+    <class>com.cognizant.opserv.sp.core.entity.TWdgId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRoleWdg</class>
+    <class>com.cognizant.opserv.sp.core.entity.TRoleWdgId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsrWdg</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsrWdgId</class>
+    <!-- End Field Facing DashBoard : UserPreferacne Entity -->
+
+    <class>com.cognizant.opserv.sp.core.entity.TRevHistory</class>
+
+    <!-- Generic Tenant Entity Registration Starts -->
+    <class>com.cognizant.opserv.sp.core.entity.TFlexiRule</class>
+
+    <!-- Generic Tenant Entity Registration Ends -->
+
+    <!-- field facing sales position starts -->
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosAttrId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmntAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmntAttrId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TEmpAlgmntAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TEmpAlgmntAttrId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAlgmntAttr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAlgmntAttrId</class>
+    <!-- filed facing sales position ends -->
+    <!-- Start of Change Request Entity -->
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqNoteType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqNoteTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqAppr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqApprHier</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqApprHierId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqApprType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReq</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqNotify</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqNotifyId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqTrigger</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqUsrNoteConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqUsrNoteConfigId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqUsrType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqUsrTypeId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAffChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAffChngReqDetId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAlgmntChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustAlgmntChngReqDetId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustCallPlanChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustCallPlanChngReqDetId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustChngReqDetId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TNestChngReq</class>
+    <class>com.cognizant.opserv.sp.core.entity.TNestChngReqId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmntChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdAlgmntChngReqDetId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTerrZipAlgmntChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TWkflwStatus</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussWkflwWndw</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosGeoUnit</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosGeoUnitHist</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosGeoUnitHistId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosGeoUnitId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTerrZipAlgmntHist</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTerrZipAlgmntHistId</class>
+    <!-- 	<class>com.cognizant.opserv.sp.core.entity.TUsaPointZip</class>  -->
+    <class>com.cognizant.opserv.sp.core.entity.TZipLoad</class>
+    <!-- End of Change Request Entity -->
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaConfig</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaHierConf</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaHeaderRefNames</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaChngReq</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaChngReqAppr</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaChngReqApprId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaConfigLoad</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaGoals</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaGoalsChngReqDet</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaGoalsChngReqDetId</class>
+    <class>com.cognizant.opserv.sp.core.entity.TQuotaHeaderMappings</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TCvgAffType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgAffHierLevel</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCvgRuleQry</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAffCustAlgmnt</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAffLoad</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TGeoHierList</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntGeoHier</class>
+    <class>com.cognizant.opserv.sp.core.entity.TAlgmntGeo</class>
+    <class>com.cognizant.opserv.sp.core.entity.TGeoLoad</class>
+    <class>com.cognizant.opserv.sp.core.entity.TGeoLoadLog</class>
+
+    <!-- new entituies -->
+    <class>com.cognizant.opserv.sp.core.entity.TAffRelType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TClassType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TClassValue</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustPrdSales</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMirSalesPos</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMirType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TSalesPosType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TTblSz</class>
+
+    <!-- <class>com.cognizant.opserv.sp.core.entity.TSpDocStore</class> -->
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqTrack</class>
+    <class>com.cognizant.opserv.sp.core.entity.TMtrValueType</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustSalesTeam</class>
+    <class>com.cognizant.opserv.sp.core.entity.TPrdSalesTeam</class>
+    <class>com.cognizant.opserv.sp.core.entity.TCustPrdSalesTeam</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngreqOffline</class>
+    <class>com.cognizant.opserv.sp.core.entity.TBussReason</class>
+    <class>com.cognizant.opserv.sp.core.entity.TChngReqBussReason</class>
+
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+    <properties>
+      <!-- Transaction integration -->
+      <property name="hibernate.transaction.manager_lookup_class"
+				value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+      <property name="hibernate.show_sql" value="true" />
+      <!-- <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" 
+				/> <property name="hibernate.connection.username" value="testadmin" /> <property 
+				name="hibernate.connection.datasource" value="java:/JPaaSDS" /> -->
+      <property name="hibernate.validator.apply_to_ddl" value="false" />
+      <property name="hibernate.validator.autoregister_listeners"
+				value="false" />
+
+
+      <!-- Starting of properties for Query and Second level cache -->
+
+      <!-- <property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.generate_statistics" value="true" />
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.cache.ehcache.EhCacheRegionFactory" />
+			<property name="net.sf.ehcache.configurationResourceName"
+				value="/ehcache.xml" /> -->
+      <!-- End of properties for Query and Second level cache -->
+      <!-- Start Audit -->
+      <property name="org.hibernate.envers.audit_table_suffix"
+				value="_hist" />
+      <property name="org.hibernate.envers.revision_field_name"
+				value="rev_id" />
+      <property name="org.hibernate.envers.revision_type_field_name"
+				value="rev_type" />
+      <!-- End Audit -->
+      <property name="hibernate.connection.release_mode" value="on_close" />
+    </properties>
+
+  </persistence-unit>
+
+
+  <!-- Persistence Unit Definition for Gis DB Starts -->
+  <persistence-unit name="GisPU" transaction-type="JTA">
+    <description>
+      Persistence unit for the Gis Database.
+    </description>
+    <jta-data-source>java:/GisDS</jta-data-source>
+
+    <!-- GIS entity -->
+    <class>com.cognizant.opserv.sp.core.entity.TUsaCounty</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsaState</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsaZip</class>
+    <class>com.cognizant.opserv.sp.core.entity.TUsaPointZip</class>
+
+    <class>com.cognizant.opserv.sp.core.entity.TIndiaPin</class>
+    <class>com.cognizant.opserv.sp.core.entity.TIndiaTaluk</class>
+    <class>com.cognizant.opserv.sp.core.entity.TIndiaDistrict</class>
+    <class>com.cognizant.opserv.sp.core.entity.TIndiaState</class>
+
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+    <properties>
+
+      <property name="hibernate.transaction.manager_lookup_class"
+				value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+      <property name="hibernate.show_sql" value="true" />
+
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+      <property name="hibernate.connection.datasource" value="java:/GisDS" />
+      <property name="hibernate.validator.apply_to_ddl" value="false" />
+      <property name="hibernate.validator.autoregister_listeners"
+				value="false" />
+
+      <!-- Starting of properties for Query and Second level cache -->
+      <!-- <property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.generate_statistics" value="true" />
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.cache.ehcache.EhCacheRegionFactory" />
+			<property name="net.sf.ehcache.configurationResourceName"
+				value="/ehcache.xml" /> -->
+      <!-- End of properties for Query and Second level cache -->
+      <property name="hibernate.connection.release_mode" value="on_close" />
+    </properties>
+
+  </persistence-unit>
+  <!-- Persistence Unit Definition for Gis DB Ends -->
+</persistence>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN" monitorInterval="5">
+
+	<Appenders>
+		<CustomFileAppender name="customFileAppender"
+			fileName="C:\\log\\opserv\\server.log" filePattern="C:\\log\\$${date:yyyy-MM}\\app-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L %m - %X{tenantCode}%n
+				</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+		</CustomFileAppender>
+
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c:%L %m - %X{tenantCode}%n" />
+		</Console>
+	</Appenders>
+
+
+	<Loggers>
+	<!-- <Logger name="org.hibernate"/> <Logger name="org.hibernate.SQL"/> <Logger 
+		name="org.springframework.web"/> -->
+		
+		<Root level="info">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="customFileAppender" />
+		</Root>
+	</Loggers>
+
+</Configuration>

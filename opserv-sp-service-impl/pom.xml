@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>opserv-sp-service-impl</artifactId>
+   <parent>
+    <version>3.0</version>
+    <artifactId>opserv-sp-main</artifactId>
+    <groupId>com.cognizant.opserv.sp</groupId>
+    <relativePath>../opserv-sp-main</relativePath>
+  </parent>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.cognizant.opserv.sp</groupId>
+  		<artifactId>opserv-sp-core</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.cognizant.opserv.sp</groupId>
+  		<artifactId>opserv-sp-service</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+   <dependency>
+			<groupId>com.cognizant.opserv.sp</groupId>
+			<artifactId>opserv-sp-common-service</artifactId>
+			<version>3.0</version>
+		</dependency>
+	<dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-messaging</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	 <!--  Junit -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit-dep</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-test</artifactId>
+      	</dependency>
+      	   <!-- Javax dependencies (provided scope) -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jsp-api</artifactId>
+        <scope>provided</scope>
+      </dependency>
+       <!-- ehcache start -->
+	 <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-ehcache</artifactId>
+         <exclusions>
+  			<exclusion>
+		      <groupId>org.slf4j</groupId>
+		      <artifactId>slf4j-api</artifactId>
+		    </exclusion>
+    	 </exclusions>
+      </dependency>
+      <!-- ehcahe end -->
+
+   <!-- Poi dependency -->
+    <dependency>
+      	<groupId>org.apache.poi</groupId>
+      	<artifactId>poi</artifactId>
+      	<version>3.9</version>
+    </dependency>
+    
+    <dependency>
+      	<groupId>org.apache.poi</groupId>
+      	<artifactId>poi-ooxml</artifactId>
+      	<version>3.9</version>
+    </dependency>
+      
+      <dependency>
+       	<groupId>com.cognizant.peg.notification</groupId>
+  		<artifactId>peg-nc-client</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.cognizant.peg.notification</groupId>
+       	<artifactId>peg-nc-core</artifactId>
+       	<version>3.0</version>
+	</dependency>
+  </dependencies>
+</project>

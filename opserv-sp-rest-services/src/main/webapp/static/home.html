@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html html ng-app="myApp">
+<head>
+<style>
+
+</style>
+<script src="lib/angular-1.5.7/angular.js"></script>
+<script src="js/home.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="MainCtrl">
+
+<div class="container">
+  <div class="header"><h1 class="header">Opserv SP Rest Client</h1></div>
+  <div class="left">
+  <div id="searchDiv">
+		 <input type="text" placeholder="search" ng-model="searchText" id="searchTxt"/>
+		</div>
+		<ol  ng-show="mainMenu">
+               <li ng-repeat="menu in menuList|filter:searchText"  id="menulist"><label ng-click="loadLinks(menu)">{{menu.name}}</label></li>              
+        </ol>
+		<table id="inputDiv1" ng-show="!mainMenu">
+                            <thead >
+							 <tr>
+								 
+								 <th id="th1">{{menuselected}}</th>
+								 <th id="th1" ng-click="goBackToMainMenu()"><u>Back</u> </th>
+							</tr>
+                            </thead>
+                             <tbody>
+							 <tr  ng-repeat="req in reqLinks|filter:searchText">
+							 
+							 <td class="tblRow"> <span id="th2">{{req.moduleName}} </span><br><br><span id="staticLink">{{req.linkstatic}}</span><input type="{{req.dynamic.inputType}}" placeholder="{{req.dynamic.pholder}}" ng-model="req.linkDynamic" ng-show="req.dynamic"/>?client=<input type="text" placeholder="client" ng-model="req.client" class="clientBox"/></td>
+							 <td id="th3"><input type="submit" value="Submit" ng-click="searchResult(req)" class="subButton"/></td>
+							 
+							 </tr> 
+                           </tbody>
+        </table>
+ </div>
+ 
+  <div class="content">
+		{{error}}
+		{{responsedata|json}}
+  </div>
+  <div class="footer">©Cognizant</div>
+</div>
+
+</body>
+</html>
+

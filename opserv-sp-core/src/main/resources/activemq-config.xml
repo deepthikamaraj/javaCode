@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">	
+	
+	<!--  ACTIVEMQ  CONNECTION DETAILS -->
+	<bean id="opservActiveMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL">
+			<value>#{systemProperties['opserv.activeMQ.brokerURL']}</value>
+		</property>
+	</bean>
+	<bean id="opservConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+		<constructor-arg ref="opservActiveMQConnectionFactory" />
+	</bean>
+	<!-- END OF CONNECTION CONFIGURATION -->
+	
+	<!--  ACTIVEMQ CONFIGURATION FOR METRIC EXECUTION -->
+	<!-- SENDER -->
+	<bean id="metricExpressionQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="metricExpressionQueue" />
+	</bean>
+	<bean id="expressionProducerTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="opservConnectionFactory"/>
+		<property name="defaultDestination" ref="metricExpressionQueue" />
+		<property name="sessionTransacted" value="true"/>
+		<property name="deliveryPersistent" value="false"/>
+	</bean>
+	<!-- END OF SENDER -->	
+	<!-- END OF METRIC-->	
+	
+	<!-- METRICS(STATIC) PRODUCER -->
+	<bean id="staticMetricsQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="staticMetricsQueue" />
+	</bean>	
+	<bean id="metricsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="opservConnectionFactory"/>
+		<property name="defaultDestination" ref="staticMetricsQueue" />		
+	</bean>	
+	<!-- END OF METRICS(STATIC) PRODUCER -->
+	
+	<!-- Notification PRODUCER  -->
+	<bean id="notificationDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="NotificationMessageQueue" />
+	</bean>
+	
+	 <bean id="notificationProducerTemplate" class="org.springframework.jms.core.JmsTemplate">
+              <property name="connectionFactory" ref="opservConnectionFactory"/>
+              <property name="defaultDestination" ref="notificationDestination" />
+              <property name="sessionTransacted" value="true"/>
+              <property name="deliveryPersistent" value="false"/>
+     </bean>	
+	<!--End Notification PRODUCER  -->
+	<!-- CR Notification PRODUCER  -->
+	<bean id="crNotificationDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="CRNotificationMessageQueue" />
+	</bean>
+	
+	 <bean id="crNotificationProducerTemplate" class="org.springframework.jms.core.JmsTemplate">
+              <property name="connectionFactory" ref="opservConnectionFactory"/>
+              <property name="defaultDestination" ref="crNotificationDestination" />
+              <property name="sessionTransacted" value="true"/>
+              <property name="deliveryPersistent" value="false"/>
+     </bean>	
+	<!--End CR Notification PRODUCER  -->
+	
+</beans>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+  <import resource="classpath*:applicationContext-opserv-messaging.xml" />
+  <import resource="classpath*:metric-msg-config.xml" />
+
+  <bean id="customerZipListener" class="com.cognizant.opserv.sp.cr.process.listener.CustomerZipListener" />
+
+  <bean id="requestProcessListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="opservConnectionFactory" />
+    <property name="destinationName" value="onlineUpdateQueue" />
+    <property name="messageListener" ref="customerZipListener" />
+    <property name="autoStartup" value="true"/>
+    <property name="concurrentConsumers" value="20"/>
+    <property name="maxConcurrentConsumers" value="20"/>
+  </bean>
+
+
+  <bean id="changeRequestApproveListener" class="com.cognizant.opserv.sp.cr.process.listener.ChangeRequestApproveListener" />
+
+  <bean id="changeRequestApproveListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="opservConnectionFactory" />
+    <property name="destinationName" value="changeRequestApproveQueue" />
+    <property name="messageListener" ref="changeRequestApproveListener" />
+    <property name="autoStartup" value="true"/>
+    <property name="concurrentConsumers" value="20"/>
+    <property name="maxConcurrentConsumers" value="20"/>
+  </bean>
+
+  <bean id="changeRequestRejectListener" class="com.cognizant.opserv.sp.cr.process.listener.ChangeRequestRejectListener" />
+
+  <bean id="changeRequestRejectListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="opservConnectionFactory" />
+    <property name="destinationName" value="changeRequestRejectQueue" />
+    <property name="messageListener" ref="changeRequestRejectListener" />
+    <property name="autoStartup" value="true"/>
+    <property name="concurrentConsumers" value="20"/>
+    <property name="maxConcurrentConsumers" value="20"/>
+  </bean>
+
+ 
+  <bean id="changeRequestApproveWorkflowListener" class="com.cognizant.opserv.sp.cr.process.listener.ChangeRequestApproveWorkFlowListener" />
+
+  <bean id="changeRequestApproveWorkflowListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="opservConnectionFactory" />
+    <property name="destinationName" value="changeRequestApproveWorkflowQueue" />
+    <property name="messageListener" ref="changeRequestApproveWorkflowListener" />
+    <property name="autoStartup" value="true"/>
+    <property name="concurrentConsumers" value="20"/>
+    <property name="maxConcurrentConsumers" value="20"/>
+  </bean>
+
+  <bean id="changeRequestRejectWorkflowListener" class="com.cognizant.opserv.sp.cr.process.listener.ChangeRequestRejectWorkFlowListener" />
+
+  <bean id="changeRequestRejectWorkflowListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="opservConnectionFactory" />
+    <property name="destinationName" value="changeRequestRejectWorkflowQueue" />
+    <property name="messageListener" ref="changeRequestRejectWorkflowListener" />
+    <property name="autoStartup" value="true"/>
+    <property name="concurrentConsumers" value="20"/>
+    <property name="maxConcurrentConsumers" value="20"/>
+  </bean>
+
+  <bean id="changeRequestReminderWorkflowListener" class="com.cognizant.opserv.sp.cr.process.listener.ChangeRequestReminderWorkFlowListener" />
+
+  <bean id="changeRequestReminderWorkflowListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="opservConnectionFactory" />
+    <property name="destinationName" value="changeRequestReminderWorkflowQueue" />
+    <property name="messageListener" ref="changeRequestReminderWorkflowListener" />
+    <property name="autoStartup" value="true"/>
+    <property name="concurrentConsumers" value="20"/>
+    <property name="maxConcurrentConsumers" value="20"/>
+  </bean>
+
+
+
+</beans>

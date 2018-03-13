@@ -1,0 +1,4 @@
+\Q/.project\E
+\Q/.classpath\E
+\Q/target/\E.*
+\Q/.settings/\E.*

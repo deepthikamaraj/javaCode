@@ -1,0 +1,120 @@
+div.container {
+    width: 100%;
+    margin: 0px;
+    border: 1px solid gray;
+	height:620px;
+}
+
+div.header, div.footer {
+    padding: 0.5em;
+    color: white;
+    background-color: #2173ad;
+    clear: left;
+}
+
+h1.header {
+    padding: 0;
+    margin: 0;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	height:40px;
+}
+
+div.left {
+    float: left;
+    width: 46%;
+    margin: 0;
+    padding: 1em;
+	height:500px;
+	overflow-y: scroll;
+}
+
+div.content {
+   width:49%;
+   float:right;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+	height:500px;
+	overflow: scroll;
+}
+
+label:hover{
+	color: green;
+}
+ #menulist{
+   padding-top:3px;
+   color:#2173ad;
+   font-weight: normal;
+  }
+  
+  #searchTxt{
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 4px 8px 4px 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+#searchTxt:focus {
+    width: 100%;
+}
+
+.clientBox {
+  width :60px;
+ }
+ 
+  #th2{
+	color: black;
+	font-size: 100%;
+	font-weight: bold;
+ }
+ #th1{
+    color: #2173ad;
+	font-weight: bold;
+ }
+ 
+ .subButton {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 3px #999;
+}
+
+.subButton:hover {background-color: #3e8e41}
+
+.subButton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+#th3{
+    width:5%;
+	padding-bottom:1px;
+ }
+ #staticLink{
+	color: grey; 
+ }
+ 
+ .tblRow{
+   padding-bottom:5px;
+ }
+ 
+ #inputDiv1{
+	width: 95%;
+ }

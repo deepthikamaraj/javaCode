@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>opserv-sp-core</artifactId>
+  <parent>
+    <version>3.0</version>
+    <artifactId>opserv-sp-main</artifactId>
+    <groupId>com.cognizant.opserv.sp</groupId>
+    <relativePath>../opserv-sp-main</relativePath>
+  </parent>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-dao</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.cognizant.opserv.sp</groupId>
+  		<artifactId>opserv-sp-common</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+	<dependency>
+  		<groupId>com.cognizant.opserv</groupId>
+  		<artifactId>opserv-tenant-common</artifactId>
+  	</dependency>
+      <!--  Mysql -->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>compile</scope>
+      </dependency>
+      
+     <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <scope>compile</scope>
+      </dependency>
+		
+      <dependency>
+      	<groupId>commons-validator</groupId>
+		<artifactId>commons-validator</artifactId>
+      </dependency>
+      <!-- Data encryption -->
+      <dependency>
+        <groupId>org.jasypt</groupId>
+        <artifactId>jasypt</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.jasypt</groupId>
+        <artifactId>jasypt-hibernate4</artifactId>
+      </dependency>
+      <!-- END -->
+       <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <scope>provided</scope>
+      </dependency>
+       <dependency>
+        <groupId>org.mvel</groupId>
+        <artifactId>mvel2</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+	  </dependency>      
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-math3</artifactId>
+        <scope>compile</scope>
+      </dependency>
+       <dependency>
+    	<groupId>commons-dbcp</groupId>
+	    <artifactId>commons-dbcp</artifactId>
+	 </dependency>
+        <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <scope>compile</scope>
+      </dependency>
+      
+       <!--  Junit -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit-dep</artifactId>
+        <scope>test</scope>
+      </dependency>
+  </dependencies>
+</project>
